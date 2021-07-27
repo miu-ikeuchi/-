@@ -19,7 +19,7 @@ CREATE DATABASE nyapple;
 CREATE USER nyapple_user IDENTIFIED BY "1234";
 
 -- すべての権限を付与
-GRANT ALL ON nyapple.* TO users;
+GRANT ALL ON nyapple.* TO nyapple_users;
 
 -- テーブルの作成
 CREATE TABLE users(
