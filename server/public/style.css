@@ -1,0 +1,128 @@
+@charset "UTF-8";
+
+/* 共通部分
+------------------------------------------*/
+
+html {
+    font-size: 100%;
+    height: 100%;
+}
+body {
+    background-image: url(images/login_bgi.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: 'M PLUS 1p', sans-serif;
+    text-align: center;
+    margin-top: 10%;
+}
+header {
+    background-color: #49d3e9;
+    padding: 20px 0;
+    margin-bottom: 50px;
+}
+a {
+    text-decoration: none;
+    color: #49d3e9;
+}
+ul {
+    list-style-type: none;
+    padding: 0;
+    width: 100%;
+}
+.title {
+    font-family: 'Aclonica', sans-serif;
+    letter-spacing: 0.5rem;
+    text-indent: 0.5rem;
+    text-align: center;
+}
+
+.title a {
+    color: #ffffff;
+}
+
+.sub-title {
+    letter-spacing: 0.5rem;
+    text-indent: 0.5rem;
+    text-align: center;
+}
+
+.wrapper {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.input-area {
+    margin-bottom: 25px;
+}
+
+.errors {
+    color: #df2ac6;
+    background-color: #f1d5ef;
+    list-style: none;
+    margin: 20px 0;
+    padding: 10px 20px;
+}
+
+/* ログインフォーム */
+.login_page {
+    display: flex;
+    margin-top: auto;
+    align-items: center;
+}
+.loginform {
+    width: 50%;
+}
+.logo_box {
+    width: 50%;
+    margin: none;
+}
+.logo {
+    margin-right: 15%;
+    width: 70%;
+}
+
+/* 新規登録フォーム */
+
+
+/* レスポンシブ対応
+-----------------------*/
+@media screen and (max-width: 1100px) {
+    .wrapper {
+        width: 1000px;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .wrapper {
+        width: 900px;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .wrapper {
+        width: 800px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .wrapper,
+    .show-wrapper,
+    .form-wrapper {
+        width: 600px;
+    }
+    .btn-area {
+        flex-flow: column;
+    }
+    .edit-btn,
+    .delete-btn,
+    .submit-btn {
+        margin-bottom: 10px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .wrapper {
+        width: 400px;
+    }
+}
