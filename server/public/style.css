@@ -27,7 +27,7 @@ a {
 }
 ul {
     list-style-type: none;
-    padding: 0;
+    padding-left: 12%;
     width: 100%;
 }
 .title {
@@ -71,6 +71,7 @@ ul {
     align-items: center;
 }
 .loginform {
+    margin-left: 5%;
     width: 50%;
 }
 .logo_box {
@@ -80,6 +81,20 @@ ul {
 .logo {
     margin-right: 15%;
     width: 70%;
+}
+input[type="text"] {
+    border: 1px solid #b8b4b4;
+    border-radius: 20px;
+    width: 40%;
+    padding: 10px;
+    margin: 10px;
+}
+input[type="submit"] {
+    border: 1px solid #b8b4b4;
+    border-radius: 20px;
+    width: 40%;
+    padding: 5px;
+    margin: 5px;
 }
 
 /* 新規登録フォーム */
