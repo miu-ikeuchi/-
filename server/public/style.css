@@ -14,12 +14,11 @@ body {
     background-repeat: no-repeat;
     font-family: 'M PLUS 1p', sans-serif;
     text-align: center;
-    margin-top: 10%;
 }
 header {
-    background-color: #49d3e9;
-    padding: 20px 0;
-    margin-bottom: 50px;
+    background-color: orange;
+    text-align: center;
+    width: 100%;
 }
 a {
     text-decoration: none;
@@ -29,6 +28,9 @@ ul {
     list-style-type: none;
     padding-left: 12%;
     width: 100%;
+}
+.signup-form {
+    padding-left: 0%;
 }
 .title {
     font-family: 'Aclonica', sans-serif;
@@ -134,10 +136,41 @@ input[type="submit"] {
     .submit-btn {
         margin-bottom: 10px;
     }
+    /* ログインフォーム */
+    .login_page {
+        display: block;
+        margin-top: auto;
+        align-items: center;
+    }
+    .loginform {
+        margin: 0;
+        width: 100%;
+    }
+    .logo_box {
+        width: 30%;
+        margin: none;
+    }
+    .logo {
+        width: 100%;
+    }
+    input[type="text"] {
+        border: 1px solid #b8b4b4;
+        border-radius: 20px;
+        width: 40%;
+        padding: 10px;
+        margin: 10px;
+    }
+    input[type="submit"] {
+        border: 1px solid #b8b4b4;
+        border-radius: 20px;
+        width: 40%;
+        padding: 5px;
+        margin: 5px;
+    }
 }
 
-@media screen and (max-width: 600px) {
+/* @media screen and (max-width: 600px) {
     .wrapper {
         width: 400px;
     }
-}
+} */
