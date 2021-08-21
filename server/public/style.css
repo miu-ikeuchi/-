@@ -29,9 +29,7 @@ ul {
     padding-left: 12%;
     width: 100%;
 }
-.signup-form {
-    padding-left: 0%;
-}
+
 .title {
     font-family: 'Aclonica', sans-serif;
     letter-spacing: 0.5rem;
@@ -91,7 +89,7 @@ input[type="text"] {
     padding: 10px;
     margin: 10px;
 }
-input[type="submit"] {
+.login-btn {
     border: 1px solid #b8b4b4;
     border-radius: 20px;
     width: 40%;
@@ -100,6 +98,86 @@ input[type="submit"] {
 }
 
 /* 新規登録フォーム */
+.signup-form {
+    padding-left: 0%;
+}
+
+/* メイン画面 */
+
+.main-photo {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    left: calc(50% - 400px/2);
+    top: calc(50% - 400px/2 + 53px);
+    background: #C4C4C4;
+    object-fit:cover;
+	border-radius:50%;
+}
+
+.sub-photo1 {
+    position: absolute;
+    width: 170px;
+    height: 170px;
+    left: calc(50% - 170px/2 - 133px);
+    top: calc(50% - 170px/2 - 232px);
+    background: #C4C4C4;
+    object-fit:cover;
+	border-radius:50%;
+}
+
+.sub-photo2 {
+    position: absolute;
+    width: 170px;
+    height: 170px;
+    left: calc(50% - 170px/2 + 290px);
+    top: calc(50% - 170px/2 - 62px);
+    background: #C4C4C4;
+    object-fit:cover;
+	border-radius:50%;
+}
+
+.sub-photo3 {
+    position: absolute;
+    width: 170px;
+    height: 170px;
+    left: calc(50% - 170px/2 + 120px);
+    top: calc(50% - 170px/2 - 232px);
+    background: #C4C4C4;
+    object-fit:cover;
+	border-radius:50%;
+}
+
+.sub-photo4 {
+    position: absolute;
+    width: 170px;
+    height: 170px;
+    left: calc(50% - 170px/2 - 303px);
+    top: calc(50% - 170px/2 - 62px);
+    background: #C4C4C4;
+    object-fit:cover;
+	border-radius:50%;
+}
+
+.like-btn {
+    position: absolute;
+    width: 220px;
+    height: 83px;
+    left: calc(50% - 220px/2 - 200px);
+    top: calc(50% - 83px/2 + 312.5px);
+    background: #959595;
+    border-radius: 25px;
+}
+
+.cute-btn {
+    position: absolute;
+    width: 220px;
+    height: 83px;
+    left: calc(50% - 220px/2 + 205px);
+    top: calc(50% - 83px/2 + 312.5px);
+    background: #C9C9C9;
+    border-radius: 25px;
+}
 
 
 /* レスポンシブ対応

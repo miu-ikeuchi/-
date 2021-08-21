@@ -14,7 +14,7 @@ require_once __DIR__ . '/functions.php';
             <ul>
                 <li><input type="text" name="user_id" id="user_id" value=""></li>
                 <li><input type="text" name="password" id="password" value=""></li>
-                <li><input type="submit" value="ログイン"></li>
+                <li><input type="submit" value="ログイン" class= "login-btn"></li>
                 <li><a href="signup.php">新規登録</a></li>
             </ul>
         </form>
