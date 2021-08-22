@@ -179,6 +179,81 @@ input[type="text"] {
     border-radius: 25px;
 }
 
+/* ユーザー詳細画面 */
+.photo-block {
+    width: 50%;
+}
+.user-photo {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    left: 16%;
+    top: 32%;
+    background: #C4C4C4;
+    object-fit:cover;
+	border-radius:50%;
+}
+
+.user-photo1 {
+    position: absolute;
+    width: 170px;
+    height: 170px;
+    left: 4%;
+    top: 35%;
+    background: #C4C4C4;
+    object-fit:cover;
+	border-radius:50%;
+}
+.user-photo2 {
+    position: absolute;
+    width: 170px;
+    height: 170px;
+    left: 14%;
+    top: 12%;
+    background: #C4C4C4;
+    object-fit:cover;
+	border-radius:50%;
+}
+.user-photo3 {
+    position: absolute;
+    width: 170px;
+    height: 170px;
+    left: 33%;
+    top: 12%;
+    background: #C4C4C4;
+    object-fit:cover;
+	border-radius:50%;
+}
+.user-photo4 {
+    position: absolute;
+    width: 170px;
+    height: 170px;
+    left: 44%;
+    top: 35%;
+    background: #C4C4C4;
+    object-fit:cover;
+	border-radius:50%;
+}
+.userpagelike-btn {
+    position: absolute;
+    width: 220px;
+    height: 83px;
+    left: 9%;
+    top: 83%;
+    background: #959595;
+    border-radius: 25px;
+}
+
+.userpagecute-btn {
+    position: absolute;
+    width: 220px;
+    height: 83px;
+    left: 36%;
+    top: 83%;
+    background: #C9C9C9;
+    border-radius: 25px;
+}
+
 
 /* レスポンシブ対応
 -----------------------*/
