@@ -36,7 +36,7 @@ CREATE TABLE users(
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     CONSTRAINT fk_prefecture_id
-        FOREIGN KEY (prefecture_id) 
+        FOREIGN KEY (prefecture_id)
         REFERENCES prefecture (id)
         ON DELETE RESTRICT ON UPDATE RESTRICT
 );
@@ -155,7 +155,7 @@ INSERT INTO prefectures(id, name) VALUES
 (38,'愛媛県'),
 (39,'高知県'),
 (40,'福岡県'),
-(4,'佐賀県'),
+(41,'佐賀県'),
 (42,'長崎県'),
 (43,'熊本県'),
 (44,'大分県'),
