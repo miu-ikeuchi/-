@@ -5,7 +5,7 @@ $errors = [];
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = filter_input(INPUT_POST, 'email');
     $name = filter_input(INPUT_POST, 'name');
-    $prefcture_id = filter_input(INPUT_POST, 'prefcture_id');
+    $prefecture_id = filter_input(INPUT_POST, 'prefecture_id');
     $address = filter_input(INPUT_POST, 'address');
     $password = filter_input(INPUT_POST, 'password');
     $type = isset($_POST["type"]) ? $_POST["type"] : 0;
@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
     //バリデーション
-    $errors = signupValidate($email, $name, $address, $password, $prefcture_id, $type, $cc_img, $id_img);
+    $errors = signupValidate($email, $name, $address, $password, $prefecture_id, $type, $cc_img, $id_img);
 
     if (empty($errors)) {
         insertUser($email, $name, $address, $password, $prefecture_id, $type, $cc_img, $id_img);
@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </label>
         <br>
         <label for="prefecture_id">住所:
-            <select name="prefecture_id">
+            <select name="prefecture_id" value="<?= h($prefecture_id) ?>">
                 <option value="">都道府県</option>
                 <option value="1">北海道</option>
                 <option value="2">青森県</option>
