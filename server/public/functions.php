@@ -37,22 +37,23 @@ function signupValidate($email, $name, $password)
     }
     return $errors;
 }
-function insertUser($email, $name, $password, $pref_id, $type)
+function insertUser($email, $name, $address, $password, $prefecture_id, $type)
 {
     $dbh = connectDb();
 
     $sql = <<<EOM
     INSERT INTO
         users
-        (email, name, password, pref_id, type)
+        (email, name, address, password, prefecture_id, type)
     VALUES
-        (:email, :name, :password, :pref_id, :type)
+        (:email, :name, :address, :password, :prefecture_id, :type)
     EOM;
 
     $stmt = $dbh->prepare($sql);
     $stmt->bindParam(':email', $email, PDO::PARAM_STR);
     $stmt->bindParam(':name', $name, PDO::PARAM_STR);
-    $stmt->bindParam(':pref_id', $pref_id, PDO::PARAM_STR);
+    $stmt->bindParam(':address', $address, PDO::PARAM_STR);
+    $stmt->bindParam(':prefecture_id', $prefecture_id, PDO::PARAM_STR);
     $stmt->bindParam(':type', $type, PDO::PARAM_STR);
     // パスワードのハッシュ化
     $pw_hash = password_hash($password, PASSWORD_DEFAULT);

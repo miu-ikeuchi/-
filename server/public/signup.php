@@ -5,14 +5,16 @@ $errors = [];
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = filter_input(INPUT_POST, 'email');
     $name = filter_input(INPUT_POST, 'name');
+    $address = filter_input(INPUT_POST, 'address');
     $password = filter_input(INPUT_POST, 'password');
+    $prefcture_id_id = filter_input(INPUT_POST, 'prefcture_id');
     $type = isset($_POST["type"]) ? $_POST["type"] : 0;
 
     //バリデーション
-    $errors = signupValidate($email, $name, $password, $pref_id, $type);
+    $errors = signupValidate($email, $name, $address, $password, $prefcture_id, $type);
 
     if (empty($errors)) {
-        insertUser($email, $name, $password, $pref_id, $type);
+        insertUser($email, $name, $address, $password, $prefecture_id, $type);
 
         header('Location: login.php');
         exit;
@@ -37,8 +39,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input type="text" name="name" value="<?= h($name) ?>">
         </label>
         <br>
-        <label for="pref_id">住所:
-            <select name="pref_id">
+        <label for="prefecture_id">住所:
+            <select name="prefecture_id">
                 <option value="">都道府県</option>
                 <option value="1">北海道</option>
                 <option value="2">青森県</option>
@@ -88,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <option value="46">鹿児島県</option>
                 <option value="47">沖縄県</option>
             </select>
-            <input type="text" name="name" value="<?= h($adress) ?>">
+            <input type="text" name="address" value="<?= h($adress) ?>">
         </label>
         <br>
         <label for="email">メールアドレス:
@@ -107,11 +109,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </label>
         <br>
         <label for="certificate">飼育歴証明書:
-            <input type="file" name="certificate-up" accept="image/jpeg, image/png">
+            <input type="file" name="certificate-up" accept="image/jpg, image/png">
         </label>
         <br>
         <label for="id">身分証明書:
-            <input type="file" name="id-up" accept="image/jpeg, image/png">
+            <input type="file" name="id-up" accept="image/jpg, image/png">
         </label>
         <br>
         <input type="submit" value="新規登録">
