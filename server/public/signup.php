@@ -5,16 +5,19 @@ $errors = [];
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = filter_input(INPUT_POST, 'email');
     $name = filter_input(INPUT_POST, 'name');
+    $prefcture_id = filter_input(INPUT_POST, 'prefcture_id');
     $address = filter_input(INPUT_POST, 'address');
     $password = filter_input(INPUT_POST, 'password');
-    $prefcture_id_id = filter_input(INPUT_POST, 'prefcture_id');
     $type = isset($_POST["type"]) ? $_POST["type"] : 0;
+    $cc_img = filter_input(INPUT_POST, 'cc_img');
+    $id_img = filter_input(INPUT_POST, 'id_img');
+
 
     //バリデーション
-    $errors = signupValidate($email, $name, $address, $password, $prefcture_id, $type);
+    $errors = signupValidate($email, $name, $address, $password, $prefcture_id, $type, $cc_img, $id_img);
 
     if (empty($errors)) {
-        insertUser($email, $name, $address, $password, $prefecture_id, $type);
+        insertUser($email, $name, $address, $password, $prefecture_id, $type, $cc_img, $id_img);
 
         header('Location: login.php');
         exit;
@@ -109,11 +112,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </label>
         <br>
         <label for="certificate">飼育歴証明書:
-            <input type="file" name="certificate-up" accept="image/jpg, image/png">
+            <input type="file" name="cc_img" accept="image/jpg, image/png" value="<?= h($cc_img) ?>">
         </label>
         <br>
         <label for="id">身分証明書:
-            <input type="file" name="id-up" accept="image/jpg, image/png">
+            <input type="file" name="id_img" accept="image/jpg, image/png" value="<?= h($id_img) ?>">
         </label>
         <br>
         <input type="submit" value="新規登録">
