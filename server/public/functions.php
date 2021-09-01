@@ -64,12 +64,12 @@ function insertUser($email, $name, $address, $password, $prefecture_id, $type, $
 
     $stmt->execute();
 }
-function loginValidate($email, $password)
+function loginValidate($name, $password)
 {
     $errors = [];
 
-    if (empty($email)) {
-        $errors[] = MSG_EMAIL_REQUIRED;
+    if (empty($name)) {
+        $errors[] = MSG_NAME_REQUIRED;
     }
     if (empty($password)) {
         $errors[] = MSG_PASSWORD_REQUIRED;
@@ -77,7 +77,7 @@ function loginValidate($email, $password)
     return $errors;
 }
 
-function findUserByEmail($email)
+function findUserByName($name)
 {
     $dbh = connectDb();
 
@@ -87,11 +87,11 @@ function findUserByEmail($email)
     FROM
         users
     WHERE
-        email = :email;
+        name = :name;
     EOM;
 
     $stmt = $dbh->prepare($sql);
-    $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+    $stmt->bindParam(':name', $name, PDO::PARAM_STR);
     $stmt->execute();
 
     return $stmt->fetch(PDO::PARAM_STR);

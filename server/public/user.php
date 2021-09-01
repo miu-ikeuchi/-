@@ -12,13 +12,13 @@ $dbh =  connectDb();
 
 <body class="user-page">
     <div class="photo-block">
-        <img src="images/mei.jpg" class="user-photo">
-        <img src="" class="user-photo1">
-        <img src="" class="user-photo2">
-        <img src="" class="user-photo3">
-        <img src="" class="user-photo4">
-        <input type="submit" value="好き！" class="userpagelike-btn">
-        <input type="submit" value="かわいい" class="userpagecute-btn">
+        <img src="images/mei.jpg" class="user-photo" href="user.php">
+            <img src="" class="user-photo1">
+            <img src="" class="user-photo2">
+            <img src="" class="user-photo3">
+            <img src="" class="user-photo4">
+            <input type="submit" value="好き！" class="userpagelike-btn">
+            <input type="submit" value="かわいい" class="userpagecute-btn">
     </div>
     <div class="plofile">
 

@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </ul>
     <?php endif; ?>
     <form action="" method="post">
-        <label for="name">ユーザー名:
+        <label for="name">ユーザーID:
             <input type="text" name="name" value="<?= h($name) ?>">
         </label>
         <br>
