@@ -80,6 +80,7 @@ ul {
     background: #fafafa;
     width: 28%;
     margin-left: 32%;
+    border-radius: 10%;
 }
 
 .logo_box {
@@ -89,6 +90,7 @@ ul {
 h1 {
     text-align: center;
     padding: 1em 0;
+    color: #666;
 }
 
 form {
@@ -160,8 +162,33 @@ form {
 
 
 /* 新規登録フォーム */
+
+.signup_body {
+    text-align: center;
+    background:url(images/login_bgi.jpg) no-repeat center;
+}
+
 .signup-form {
     padding-left: 0%;
+}
+.group{
+    margin-bottom:15px;
+    width:100%;
+    color:#fff;
+    display:block;
+    border:none;
+    padding:15px 20px;
+    border-radius:25px;
+    background:rgba(255,255,255,.1);
+}
+label{
+    color:#aaa;
+}
+input {
+    border:none;
+    padding:15px 20px;
+    border-radius:25px;
+    background:rgba(255,255,255,.1);
 }
 
 /* メイン画面 */
