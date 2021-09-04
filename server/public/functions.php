@@ -21,7 +21,7 @@ function h($str)
 {
     return htmlspecialchars($str, ENT_QUOTES, 'UTF-8');
 }
-function signupValidate($email, $name, $password)
+function signupValidate($email, $name, $address, $password, $prefecture_id, $type, $cc_img, $id_img)
 {
     $errors = [];
 
@@ -32,8 +32,23 @@ function signupValidate($email, $name, $password)
     if (empty($name)) {
         $errors[] = MSG_NAME_REQUIRED;
     }
+    if (empty($address)) {
+        $errors[] = MSG_ADDRESS_REQUIRED;
+    }
     if (empty($password)) {
         $errors[] = MSG_PASSWORD_REQUIRED;
+    }
+    if (empty($prefecture_id)) {
+        $errors[] = MSG_PREFECTURE_REQUIRED;
+    }
+    if (empty($type)) {
+        $errors[] = MSG_TYPE_REQUIRED;
+    }
+    if (empty($cc_img)) {
+        $errors[] = MSG_CC_REQUIRED;
+    }
+    if (empty($id_img)) {
+        $errors[] = MSG_ID_REQUIRED;
     }
     return $errors;
 }
@@ -53,7 +68,7 @@ function insertUser($email, $name, $address, $password, $prefecture_id, $type, $
     $stmt->bindParam(':email', $email, PDO::PARAM_STR);
     $stmt->bindParam(':name', $name, PDO::PARAM_STR);
     $stmt->bindParam(':address', $address, PDO::PARAM_STR);
-    $stmt->bindParam(':prefecture_id', $prefecture_id, PDO::PARAM_STR);
+    $stmt->bindParam(':prefecture_id', $prefecture_id, PDO::PARAM_INT);
     $stmt->bindParam(':type', $type, PDO::PARAM_STR);
     $stmt->bindParam(':cc_img', $cc_img, PDO::PARAM_STR);
     $stmt->bindParam(':id_img', $id_img, PDO::PARAM_STR);

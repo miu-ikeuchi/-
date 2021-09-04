@@ -1,7 +1,11 @@
 <?php
 require_once __DIR__ . '/functions.php';
 
+session_start();
+
 $dbh =  connectDb();
+
+var_dump($_SESSION['id']);
 
 if (empty($_SESSION['id'])) {
     header('Location: login.php');
@@ -13,9 +17,10 @@ if (empty($_SESSION['id'])) {
 <!DOCTYPE html>
 <html lang="ja">
 <?php include_once __DIR__ . '/_head.html' ?>
-<?php include_once __DIR__ . '/_header.html' ?>
+
 
 <body>
+    <?php include_once __DIR__ . '/_header.html' ?>
     <img src="images/mei.jpg" class="main-photo">
     <img src="" class="sub-photo1">
     <img src="" class="sub-photo2">
