@@ -3,6 +3,11 @@ require_once __DIR__ . '/functions.php';
 
 $dbh =  connectDb();
 
+if (empty($_SESSION['id'])) {
+    header('Location: login.php');
+    exit;
+}
+
 ?>
 
 <!DOCTYPE html>
