@@ -111,3 +111,21 @@ function findUserByName($name)
 
     return $stmt->fetch(PDO::PARAM_STR);
 }
+function insertPhoto($user_id, $img)
+{
+    $dbh = connectDb();
+
+    $sql = <<<EOM
+    INSERT INTO
+        sub_images
+        (user_id, img)
+    VALUES
+        (:user_id, :img)
+    EOM;
+
+    $stmt = $dbh->prepare($sql);
+    $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+    $stmt->bindParam(':img', $img, PDO::PARAM_STR);
+
+    $stmt->execute();
+}

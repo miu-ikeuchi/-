@@ -3,14 +3,22 @@ require_once __DIR__ . '/functions.php';
 
 session_start();
 
-$dbh =  connectDb();
-
-var_dump($_SESSION['id']);
-
 if (empty($_SESSION['id'])) {
     header('Location: login.php');
     exit;
 }
+
+$dbh =  connectDb();
+
+
+$sql = <<<EOM
+SELECT TOP
+    (1) *
+FROM
+    sub_images
+ORDER BY
+    NEWID()
+EOM;
 
 ?>
 
@@ -19,13 +27,12 @@ if (empty($_SESSION['id'])) {
 <?php include_once __DIR__ . '/_head.html' ?>
 
 
-<body>
+<body class="main-page">
     <?php include_once __DIR__ . '/_header.html' ?>
-    <img src="images/mei.jpg" class="main-photo">
-    <img src="" class="sub-photo1">
-    <img src="" class="sub-photo2">
-    <img src="" class="sub-photo3">
-    <img src="" class="sub-photo4">
+    <a href="user.php">
+        <!-- <img src="images/mei.jpg" class="main-photo"> -->
+        <div class="main-photo"><?= h($photo['img']) ?></div>
+    </a>
     <input type="submit" value="好き！" class="like-btn">
     <input type="submit" value="かわいい" class="cute-btn">
 </body>
