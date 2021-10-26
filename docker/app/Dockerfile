@@ -9,9 +9,7 @@ COPY php.ini /usr/local/etc/php/
 RUN apt-get update && apt-get install -y zlib1g-dev libzip-dev mysql-common wget locales npm \
   && docker-php-ext-install zip pdo_mysql \
   && locale-gen ja_JP.UTF-8 \
-  && echo "export LANG=ja_JP.UTF-8" >> ~/.bashrc \
-  && wget https://dev.mysql.com/get/Downloads/MySQL-8.0/mysql-community-client-core_8.0.17-1debian10_amd64.deb \
-  && dpkg -i mysql-community-client-core_8.0.17-1debian10_amd64.deb
+  && echo "export LANG=ja_JP.UTF-8" >> ~/.bashrc
 
 ENV LANG ja_JP.UTF-8
 ENV LC_CTYPE ja_JP.UTF-8

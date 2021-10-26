@@ -15,13 +15,13 @@ $dbh =  connectDb();
         <img src="images/mei.jpg" class="user-photo" href="user.php">
         <a href="photo.php" class="photo-plus-btn">Photo</a>
     </div>
-    <a href="edit.php" class="edit-btn">編集</a>
+    <a href="mypage.php" class="update-btn">更新</a>
     <div class="plofile">
         <ul>
             <li>ユーザー名</li> <input type="text" name="address" value="<?= h($name) ?>">
             <li>居住地</li> <input type="text" name="address" value="<?= h($prefecture_id) ?>">
             <li>
-                <label for="type">TYPE
+                <label for="type">タイプcd 
                     <input type="radio" id="human" name="type" value="1">
                     <label for="human">猫探してる</label>
                     <input type="radio" id="cat" name="type" value="2">

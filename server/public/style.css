@@ -203,10 +203,10 @@ input {
 
 .main-photo {
     margin-top: 2%;
-    width: 38%;
+    width: 46%;
     background: orange;
     object-fit:cover;
-	border-radius:50%;
+	border-radius:20%;
 }
 
 .like-btn {
@@ -246,13 +246,12 @@ input {
 }
 .user-photo {
     position: absolute;
-    width: 400px;
-    height: 400px;
-    left: 16%;
+    width: 36%;
+    left: 12%;
     top: 20%;
     background: orange;
     object-fit:cover;
-	border-radius:50%;
+	border-radius:20%;
 }
 
 .userpagelike-btn {
@@ -306,9 +305,9 @@ input {
     line-height: 1.5;
     padding: 0.5em 0;
 }
-.edit-btn {
+.edit-btn,
+.update-btn {
     color: white;
-    background: rgba(250, 62, 62, 0.842);
     box-shadow: 0px 0px 5px silver;
     border-radius: 9px;
     padding: 6px 20px;
@@ -316,6 +315,12 @@ input {
     right: 6%;
     top: 20%;
     margin-bottom: 10px;
+}
+.edit-btn {
+    background: rgba(250, 62, 62, 0.842);
+}
+.update-btn {
+    background: rgba(153, 255, 86, 0.897);
 }
 .photo-plus-btn {
     color: orange;
@@ -329,10 +334,30 @@ input {
     cursor: pointer;
 }
 
+/*プロフィール編集フォーム  */
+.plofile label,li {
+    color: rgb(107, 48, 1);
+}
+.plofile input {
+    border:none;
+    padding:15px 20px;
+    border-radius:25px;
+    background:rgb(255, 255, 255);
+}
+
+
 /* 写真登録ページ */
 .photo-plus {
     text-align: center;
-    background-color: #fffde8;
+    background-color: #fefef3;
+}
+
+/* メッセージ画面 */
+.message {
+    background-image: url(images/bg-paw.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 /* レスポンシブ対応

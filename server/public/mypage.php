@@ -12,7 +12,9 @@ $dbh =  connectDb();
 <body class="mypage">
     <?php include_once __DIR__ . '/_header.html' ?>
     <div class="photo-block">
-        <img src="images/mei.jpg" class="user-photo">
+        <div class="user-photo">
+            <?php ?>
+        </div>
         <a href="photo.php" class="photo-plus-btn">Photo</a>
     </div>
     <a href="edit.php" class="edit-btn">編集</a>
