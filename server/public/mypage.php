@@ -9,9 +9,14 @@ SELECT
 FROM
     sub_images
 WHERE
-    user_id=:id
+    user_id = :id
 EOM;
 
+$stmt = $dbh->prepare($sql);
+$stmt->bindParam(':id', $id, PDO::PARAM_INT);
+$stmt->execute();
+$sub_images = $stmt->fetch(PDO::FETCH_ASSOC);
+var_dump($sub_images);
 ?>
 
 <!DOCTYPE html>
@@ -23,16 +28,16 @@ EOM;
     <div class="photo-block">
         <img class="user-photo" src="<?= $sub_images['img'] ?>">
         <a href=" photo.php" class="photo-plus-btn">Photo</a>
-        </div>
-        <a href="edit.php" class="edit-btn">編集</a>
-        <div class="plofile">
-            <ul>
-                <li>ユーザー名</li>
-                <li>居住地</li>
-                <li>タイプ</li>
-                <li>コメント</li>
-            </ul>
-        </div>
+    </div>
+    <a href="edit.php" class="edit-btn">編集</a>
+    <div class="plofile">
+        <ul>
+            <li>ユーザー名</li>
+            <li>居住地</li>
+            <li>タイプ</li>
+            <li>コメント</li>
+        </ul>
+    </div>
 </body>
 
 </html>

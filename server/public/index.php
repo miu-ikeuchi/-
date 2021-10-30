@@ -10,7 +10,6 @@ if (empty($_SESSION['id'])) {
 
 $dbh =  connectDb();
 
-
 $sql = <<<EOM
 SELECT TOP
     (1) *
