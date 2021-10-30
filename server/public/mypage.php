@@ -1,6 +1,15 @@
 <?php
 require_once __DIR__ . '/functions.php';
 
+session_start();
+
+if (empty($_SESSION['id'])) {
+    header('Location: login.php');
+    exit;
+}
+
+$id = $_SESSION['id'];
+
 $dbh =  connectDb();
 
 $sql = <<<EOM
@@ -13,10 +22,10 @@ WHERE
 EOM;
 
 $stmt = $dbh->prepare($sql);
-$stmt->bindParam(':id', $id, PDO::PARAM_INT);
+$stmt->bindParam('id', $id, PDO::PARAM_INT);
 $stmt->execute();
 $sub_images = $stmt->fetch(PDO::FETCH_ASSOC);
-var_dump($sub_images);
+
 ?>
 
 <!DOCTYPE html>
@@ -26,7 +35,7 @@ var_dump($sub_images);
 <body class="mypage">
     <?php include_once __DIR__ . '/_header.html' ?>
     <div class="photo-block">
-        <img class="user-photo" src="<?= $sub_images['img'] ?>">
+        <img class="user-photo" src="images/<?= $sub_images['img'] ?>">
         <a href=" photo.php" class="photo-plus-btn">Photo</a>
     </div>
     <a href="edit.php" class="edit-btn">編集</a>
