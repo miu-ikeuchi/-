@@ -19,6 +19,31 @@ ORDER BY
     NEWID()
 EOM;
 
+session_start();
+
+if (empty($_SESSION['id'])) {
+    header('Location: login.php');
+    exit;
+}
+
+$id = $_SESSION['id'];
+
+$dbh =  connectDb();
+
+$sql = <<<EOM
+SELECT 
+    *
+FROM
+    sub_images
+WHERE
+    user_id = :id
+EOM;
+
+$stmt = $dbh->prepare($sql);
+$stmt->bindParam('id', $id, PDO::PARAM_INT);
+$stmt->execute();
+$sub_images = $stmt->fetch(PDO::FETCH_ASSOC);
+
 ?>
 
 <!DOCTYPE html>
@@ -29,9 +54,9 @@ EOM;
 <body class="main-page">
     <?php include_once __DIR__ . '/_header.html' ?>
     <a href="user.php">
-        
-        <div class="main-photo">
-            <?php ?>
+
+        <div>
+            <img class="main-photo" src="images/<?= $sub_images['img'] ?>">
         </div>
     </a>
     <form action="like.php" method="POST">
