@@ -27,7 +27,7 @@ services:
     # 開放するポートを指定(ホスト:コンテナ)
     # HTTPは80番ポートを使用
     ports:
-      - 8080:80
+      - 80:80
     volumes:
       # ローカルのserverとコンテナ内の/var/wwwがマウントされる
       - ./server:/var/www

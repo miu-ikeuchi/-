@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/functions.php';
+require_once __DIR__ . '/../common/functions.php';
 
 // sessionstartは一番はじめに入れる
 session_start();
@@ -12,24 +12,23 @@ if ($_SESSION['id']) {
 
 $errors = [];
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = filter_input(INPUT_POST, 'email');
+    $name = filter_input(INPUT_POST, 'name');
     $password = filter_input(INPUT_POST, 'password');
 
-    $errors = loginValidate($email, $password);
+    $errors = loginValidate($name, $password);
 
     if (empty($errors)) {
-        $user = findUserByEmail($email);
+        $user = findUserByName($name);
 
         if (password_verify($password, $user['password'])) {
             $_SESSION['id'] = $user['id'];
             header('Location: index.php');
             exit;
         } else {
-            $errors[] = MSG_EMAIL_PASSWORD_NOT_MATCH;
+            $errors[] = MSG_NAME_PASSWORD_NOT_MATCH;
         }
     }
 }
-
 
 ?>
 
@@ -37,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html lang="ja">
 <?php include_once __DIR__ . '/_head.html' ?>
 
-<body>
+<body class="login_body">
     <?php if ($errors) : ?>
         <ul class="error-list">
             <?php foreach ($errors as $error) : ?>
@@ -47,18 +46,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php endif; ?>
     <div class="login_page">
         <div class="logo_box"><img src="images/nyapple_logo.png" class="logo"></div>
-        <form action="" method="post" class="loginform">
-            <label for="email">メールアドレス:
-                <input type="email" name="email" id="email" value="<?= h($email) ?>">
-            </label>
-            <br>
-            <label for="password">パスワード:
-                <input type="password" name="password" id="password">
-            </label>
-            <br>
-            <input type="submit" value="ログイン">
-        </form>
-        <a href="signup.php">新規登録はこちら</a>
+        <div class="form-wrapper">
+            <h1>Login</h1>
+            <form action="" method="post">
+                <div class="form-item">
+                    <label for="name"></label>
+                    <input type="name" name="name" required="required" placeholder="UserID" id="name" value="<?= h($name) ?>"></input>
+                </div>
+                <div class="form-item">
+                    <label for="password"></label>
+                    <input type="password" name="password" required="required" placeholder="Password" id="password"></input>
+                </div>
+                <div class="button-panel">
+                    <input type="submit" class="button" title="login" value="ログイン"></input>
+                </div>
+            </form>
+            <div class="form-footer">
+                <p><a href="signup.php">Create an account</a></p>
+                <p><a href="#">Forgot password?</a></p>
+            </div>
+        </div>
     </div>
 </body>
 
