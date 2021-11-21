@@ -132,7 +132,21 @@ function insertPhoto($user_id, $img)
 
 function get_prefectures()
 {
+    $dbh = connectDb();
 
+    $sql = <<<EOM
+    SELECT
+        *
+    FROM
+        prefectures
+    ORDER BY
+        id
+    EOM;
+
+    $stmt = $dbh->prepare($sql);
+    $stmt->execute();
+
+    return $stmt->fetchAll(PDO::PARAM_STR);
 }
 
 function get_type_name($type)
