@@ -40,7 +40,7 @@ $sub_images = $stmt->fetch(PDO::FETCH_ASSOC);
         <a href="photo.php" class="photo-plus-btn">Photo</a>
     </div>
     <a href="mypage.php" class="update-btn">更新</a>
-    <div class="plofile">
+    <div class="profile">
         <ul>
             <li>ユーザー名</li> <input type="text" name="address" value="<?= h($name) ?>">
             <li>居住地</li> <input type="text" name="address" value="<?= h($prefecture_id) ?>">

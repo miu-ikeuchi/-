@@ -286,13 +286,13 @@ input {
     background-repeat: no-repeat;
 }
 
-.plofile {
+.profile {
     width: 35%;
     position: absolute;
     right: 10%;
     top: 25%;
 }
-.plofile ul {
+.profile ul {
     background: #fffde8;
     box-shadow: 0px 0px 0px 10px #fffde8;/*線の外側*/
     border: dashed 2px #ffb03f;/*破線*/
@@ -301,9 +301,12 @@ input {
     margin-right: 10px;/*はみ出ないように調整*/
     padding: 0.5em 0.5em 0.5em 2em;
 }
-.plofile ul li {
+.profile ul li {
     line-height: 1.5;
     padding: 0.5em 0;
+}
+.profile-list {
+    margin-left: 2em;
 }
 .edit-btn,
 .update-btn {
@@ -335,10 +338,10 @@ input {
 }
 
 /*プロフィール編集フォーム  */
-.plofile label,li {
+.profile label,li {
     color: rgb(107, 48, 1);
 }
-.plofile input {
+.profile input {
     border:none;
     padding:15px 20px;
     border-radius:25px;

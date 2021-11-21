@@ -33,7 +33,7 @@ $bt = $stmt->fetch(PDO::FETCH_ASSOC);
         <input type="submit" value="好き！" class="userpagelike-btn">
         <input type="submit" value="かわいい" class="userpagecute-btn">
     </div>
-    <div class="plofile">
+    <div class="profile">
         <ul>
             <li>ユーザー名</li>
             <li>居住地</li>

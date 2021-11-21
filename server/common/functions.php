@@ -134,3 +134,13 @@ function get_prefectures()
 {
 
 }
+
+function get_type_name($type)
+{
+    switch ($type) {
+        case '1':
+            return '里親';
+        case '2':
+            return '猫';
+    }
+}
