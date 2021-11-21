@@ -29,7 +29,7 @@ $bt = $stmt->fetch(PDO::FETCH_ASSOC);
 <body class="user-page">
     <?php include_once __DIR__ . '/_header.html' ?>
     <div class="photo-block">
-        <img class="user-photo" src="<?  ?>">
+        <img class="user-photo" src="images/samplecat.jpeg">
         <input type="submit" value="好き！" class="userpagelike-btn">
         <input type="submit" value="かわいい" class="userpagecute-btn">
     </div>

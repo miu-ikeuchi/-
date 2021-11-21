@@ -21,7 +21,7 @@ $dbh =  connectDb();
             <li>ユーザー名</li> <input type="text" name="address" value="<?= h($name) ?>">
             <li>居住地</li> <input type="text" name="address" value="<?= h($prefecture_id) ?>">
             <li>
-                <label for="type">タイプcd 
+                <label for="type">タイプ
                     <input type="radio" id="human" name="type" value="1">
                     <label for="human">猫探してる</label>
                     <input type="radio" id="cat" name="type" value="2">

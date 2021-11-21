@@ -56,7 +56,8 @@ $sub_images = $stmt->fetch(PDO::FETCH_ASSOC);
     <a href="user.php">
 
         <div>
-            <img class="main-photo" src="images/<?= $sub_images['img'] ?>">
+            <!-- <img class="main-photo" src="images/samplecat.jpeg"> -->
+            <img class="user-photo" src="images/<?= $sub_images['img'] ?>">
         </div>
     </a>
     <form action="like.php" method="POST">
