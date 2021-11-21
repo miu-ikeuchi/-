@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/functions.php';
+require_once __DIR__ . '/../common/functions.php';
 
 // sessionstartは一番はじめに入れる
 session_start();

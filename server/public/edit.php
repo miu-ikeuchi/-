@@ -1,7 +1,31 @@
 <?php
-require_once __DIR__ . '/functions.php';
+require_once __DIR__ . '/../common/functions.php';
+
+session_start();
+
+if (empty($_SESSION['id'])) {
+    header('Location: login.php');
+    exit;
+}
+
+$id = $_SESSION['id'];
 
 $dbh =  connectDb();
+
+$sql = <<<EOM
+SELECT 
+    *
+FROM
+    users
+WHERE
+    name = :name,
+    prefecture
+EOM;
+
+$stmt = $dbh->prepare($sql);
+$stmt->bindParam('id', $id, PDO::PARAM_INT);
+$stmt->execute();
+$sub_images = $stmt->fetch(PDO::FETCH_ASSOC);
 
 ?>
 
@@ -28,7 +52,6 @@ $dbh =  connectDb();
                     <label for="cat">里親探してる</label>
                 </label>
             </li>
-            <li>コメント</li> <input type="text" name="address" value="<?= h($adress) ?>">
         </ul>
     </div>
 </body>

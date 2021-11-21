@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/functions.php';
+require_once __DIR__ . '/../common/functions.php';
 $errors = [];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -127,7 +127,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="file" name="id_img" accept="image/jpg, image/png" value="<?= h($id_img) ?>">
             </label>
         </div>
-            <input type="submit" value="新規登録">
+        <input type="submit" value="新規登録">
     </form>
 </body>
 

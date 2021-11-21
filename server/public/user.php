@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/functions.php';
+require_once __DIR__ . '/../common/functions.php';
 
 $id = filter_input(INPUT_GET, 'id');
 
