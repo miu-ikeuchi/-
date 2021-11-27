@@ -32,11 +32,17 @@ $dbh =  connectDb();
 
 $sql = <<<EOM
 SELECT 
-    *
+    a.id,
+    b.user_id,
+    b.img
 FROM
-    sub_images
-WHERE
-    user_id = :id
+    users a
+INNER JOIN
+    sub_images b
+ON
+    a.id = b.user_id
+WHERE NOT
+    a.id = :id
 EOM;
 
 $stmt = $dbh->prepare($sql);
