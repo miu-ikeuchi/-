@@ -1,23 +1,23 @@
 <?php
 require_once __DIR__ . '/../common/functions.php';
 
-session_start();
+// session_start();
 
-if (empty($_SESSION['id'])) {
-    header('Location: login.php');
-    exit;
-}
+// if (empty($_SESSION['id'])) {
+//     header('Location: login.php');
+//     exit;
+// }
 
-$dbh =  connectDb();
+// $dbh =  connectDb();
 
-$sql = <<<EOM
-SELECT TOP
-    (1) *
-FROM
-    sub_images
-ORDER BY
-    NEWID()
-EOM;
+// $sql = <<<EOM
+// SELECT TOP
+//     (1) *
+// FROM
+//     sub_images
+// ORDER BY
+//     NEWID()
+// EOM;
 
 session_start();
 
@@ -54,10 +54,9 @@ $sub_images = $stmt->fetch(PDO::FETCH_ASSOC);
 <body class="main-page">
     <?php include_once __DIR__ . '/_header.html' ?>
     <a href="user.php">
-
         <div>
             <!-- <img class="main-photo" src="images/samplecat.jpeg"> -->
-            <img class="user-photo" src="images/<?= $sub_images['img'] ?>">
+            <img class="main-photo" src="images/<?= $sub_images['img'] ?>">
         </div>
     </a>
     <form action="like.php" method="POST">
