@@ -1,24 +1,6 @@
 <?php
 require_once __DIR__ . '/../common/functions.php';
 
-// session_start();
-
-// if (empty($_SESSION['id'])) {
-//     header('Location: login.php');
-//     exit;
-// }
-
-// $dbh =  connectDb();
-
-// $sql = <<<EOM
-// SELECT TOP
-//     (1) *
-// FROM
-//     sub_images
-// ORDER BY
-//     NEWID()
-// EOM;
-
 session_start();
 
 if (empty($_SESSION['id'])) {
@@ -31,18 +13,24 @@ $id = $_SESSION['id'];
 $dbh =  connectDb();
 
 $sql = <<<EOM
-SELECT 
-    a.id,
-    b.user_id,
-    b.img
+SELECT
+    a.*
 FROM
     users a
-INNER JOIN
-    sub_images b
+LEFT JOIN
+    (SELECT 
+         *
+    FROM
+        likes
+    WHERE
+        user_id = :id
+    ) b
 ON
-    a.id = b.user_id
-WHERE NOT
-    a.id = :id
+    a.id = b. target_user_id
+WHERE
+    a.id <> :id
+    AND b. target_user_id IS NULL
+LIMIT 1
 EOM;
 
 $stmt = $dbh->prepare($sql);
