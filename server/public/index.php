@@ -12,9 +12,10 @@ $id = $_SESSION['id'];
 
 $dbh =  connectDb();
 
-$sql = <<<EOM
+$sql =<<<EOM
 SELECT
-    a.*
+    a.*,
+    c.img
 FROM
     users a
 LEFT JOIN
@@ -27,6 +28,10 @@ LEFT JOIN
     ) b
 ON
     a.id = b. target_user_id
+LEFT JOIN
+    sub_images c
+ON
+    a.id = c.user_id
 WHERE
     a.id <> :id
     AND b. target_user_id IS NULL
@@ -49,7 +54,6 @@ $sub_images = $stmt->fetch(PDO::FETCH_ASSOC);
     <?php include_once __DIR__ . '/_header.html' ?>
     <a href="user.php">
         <div>
-            <!-- <img class="main-photo" src="images/samplecat.jpeg"> -->
             <img class="main-photo" src="images/<?= $sub_images['img'] ?>">
         </div>
     </a>
