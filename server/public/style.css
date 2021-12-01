@@ -202,9 +202,7 @@ input {
 }
 
 .main-photo {
-    margin-top: 2%;
-    width: 46%;
-    background: orange;
+    width: 37%;
     object-fit:cover;
 	border-radius:20%;
 }
@@ -245,11 +243,10 @@ input {
     width: 50%;
 }
 .user-photo {
-    position: absolute;
+    padding: 0 26%;
     width: 36%;
     left: 12%;
     top: 20%;
-    background: orange;
     object-fit:cover;
 	border-radius:20%;
 }

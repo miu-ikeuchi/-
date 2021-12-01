@@ -2,24 +2,53 @@
 
 require_once __DIR__ . '/../common/functions.php';
 
-$id = filter_input(INPUT_GET, 'id');
+session_start();
 
-// データベースに接続
-$dbh = connectDb();
+if (empty($_SESSION['id'])) {
+    header('Location: login.php');
+    exit;
+}
+
+$id = $_SESSION['id'];
+
+$dbh =  connectDb();
 
 $sql = <<<EOM
 SELECT
-    *
+    a.*,
+    c.img,
+    d.name as prefecture_name
 FROM
-    users
+    users a
+LEFT JOIN
+    (SELECT 
+         *
+    FROM
+        likes
+    WHERE
+        user_id = :id
+    ) b
+ON
+    a.id = b. target_user_id
+LEFT JOIN
+    sub_images c
+ON
+    a.id = c.user_id
+LEFT JOIN
+    prefectures d
+ON
+    a.prefecture_id = d.id
 WHERE
-    id = :id
+    a.id <> :id
+    AND b. target_user_id IS NULL
+LIMIT 1
 EOM;
 
 $stmt = $dbh->prepare($sql);
-$stmt->bindParam(':id', $id, PDO::PARAM_INT);
+$stmt->bindParam('id', $id, PDO::PARAM_INT);
 $stmt->execute();
-$bt = $stmt->fetch(PDO::FETCH_ASSOC);
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
+
 ?>
 
 <!DOCTYPE html>
@@ -29,16 +58,15 @@ $bt = $stmt->fetch(PDO::FETCH_ASSOC);
 <body class="user-page">
     <?php include_once __DIR__ . '/_header.html' ?>
     <div class="photo-block">
-        <img class="user-photo" src="images/samplecat.jpeg">
+        <img class="user-photo" src="images/<?= $user['img'] ?>">
         <input type="submit" value="好き！" class="userpagelike-btn">
         <input type="submit" value="かわいい" class="userpagecute-btn">
     </div>
     <div class="profile">
         <ul>
-            <li>ユーザー名</li>
-            <li>居住地</li>
-            <li>タイプ</li>
-            <li>コメント</li>
+            <li>ユーザー名<span class="profile-list"><?= $user['name'] ?></span></li>
+            <li>居住地<span class="profile-list"><?= $user['prefecture_name'] ?></span></li>
+            <li>タイプ<span class="profile-list"><?= get_type_name($user['type']) ?></span></li>
         </ul>
     </div>
 </body>

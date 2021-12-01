@@ -8,35 +8,34 @@ if (empty($_SESSION['id'])) {
     exit;
 }
 
-$dbh =  connectDb();
-
-$sql = <<<EOM
-SELECT TOP
-    (1) *
-FROM
-    sub_images
-ORDER BY
-    NEWID()
-EOM;
-
-session_start();
-
-if (empty($_SESSION['id'])) {
-    header('Location: login.php');
-    exit;
-}
-
 $id = $_SESSION['id'];
 
 $dbh =  connectDb();
 
-$sql = <<<EOM
-SELECT 
-    *
+$sql =<<<EOM
+SELECT
+    a.*,
+    c.img
 FROM
-    sub_images
+    users a
+LEFT JOIN
+    (SELECT 
+         *
+    FROM
+        likes
+    WHERE
+        user_id = :id
+    ) b
+ON
+    a.id = b. target_user_id
+LEFT JOIN
+    sub_images c
+ON
+    a.id = c.user_id
 WHERE
-    user_id = :id
+    a.id <> :id
+    AND b. target_user_id IS NULL
+LIMIT 1
 EOM;
 
 $stmt = $dbh->prepare($sql);
@@ -54,10 +53,8 @@ $sub_images = $stmt->fetch(PDO::FETCH_ASSOC);
 <body class="main-page">
     <?php include_once __DIR__ . '/_header.html' ?>
     <a href="user.php">
-
         <div>
-            <!-- <img class="main-photo" src="images/samplecat.jpeg"> -->
-            <img class="user-photo" src="images/<?= $sub_images['img'] ?>">
+            <img class="main-photo" src="images/<?= $sub_images['img'] ?>">
         </div>
     </a>
     <form action="like.php" method="POST">
