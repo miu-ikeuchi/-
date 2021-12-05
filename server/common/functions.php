@@ -21,7 +21,7 @@ function h($str)
 {
     return htmlspecialchars($str, ENT_QUOTES, 'UTF-8');
 }
-function signupValidate($email, $name, $address, $password, $prefecture_id, $type, $cc_img, $id_img)
+function signup_validate($email, $name, $address, $password, $prefecture_id, $type, $cc_img, $id_img)
 {
     $errors = [];
 
@@ -52,7 +52,48 @@ function signupValidate($email, $name, $address, $password, $prefecture_id, $typ
     }
     return $errors;
 }
-function insertUser($email, $name, $address, $password, $prefecture_id, $type, $cc_img, $id_img)
+
+function update_validate($name, $prefecture_id, $type)
+{
+    $errors = [];
+
+    if (empty($name)) {
+        $errors[] = MSG_NAME_REQUIRED;
+    }
+    if (empty($prefecture_id)) {
+        $errors[] = MSG_PREFECTURE_REQUIRED;
+    }
+    if (empty($type)) {
+        $errors[] = MSG_TYPE_REQUIRED;
+    }
+    return $errors;
+}
+
+function update_user($id, $name, $prefecture_id, $type)
+{
+    $dbh = connectDb();
+
+    $sql = <<<EOM
+    UPDATE
+        users
+    SET
+        name = :name,
+        prefecture_id = :prefecture_id,
+        type = :type
+    WHERE
+        id = :id
+    EOM;
+    $stmt = $dbh->prepare($sql);
+
+    $stmt->bindParam(':name', $name, PDO::PARAM_STR);
+    $stmt->bindParam(':prefecture_id', $prefecture_id, PDO::PARAM_STR);
+    $stmt->bindParam(':type', $type, PDO::PARAM_STR);
+    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+
+    $stmt->execute();
+}
+
+function insert_user($email, $name, $address, $password, $prefecture_id, $type, $cc_img, $id_img)
 {
     $dbh = connectDb();
 
@@ -157,4 +198,24 @@ function get_type_name($type)
         case '2':
             return '猫';
     }
+}
+
+function find_user_by_id($id)
+{
+    $dbh = connectDb();
+
+    $sql = <<<EOM
+    SELECT
+        *
+    FROM
+        users
+    WHERE
+        id = :id
+    EOM;
+
+    $stmt = $dbh->prepare($sql);
+    $stmt->bindParam(':id', $id, PDO::PARAM_STR);
+    $stmt->execute();
+
+    return $stmt->fetch(PDO::PARAM_STR);
 }

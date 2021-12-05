@@ -10,61 +10,25 @@ if (empty($_SESSION['id'])) {
 
 $id = $_SESSION['id'];
 
-$dbh =  connectDb();
+$dbh = connectDb();
 
-$sql = <<<EOM
-SELECT 
-    a.name,
-    c.name as prefecture_name,
-    a.type,
-    b.img
-FROM
-    users a
-INNER JOIN
-    sub_images b
-ON
-    a.id = b.user_id
-INNER JOIN
-    prefectures c
-ON
-    a.prefecture_id = c.id
-WHERE
-    a.id = :id
-EOM;
+$user = find_user_by_id($id);
 
-$stmt = $dbh->prepare($sql);
-$stmt->bindParam('id', $id, PDO::PARAM_INT);
-$stmt->execute();
-$user = $stmt->fetch(PDO::FETCH_ASSOC);
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $name = filter_input(INPUT_POST, 'name');
+    $prefecture_id = filter_input(INPUT_POST, 'prefecture_id');
+    $type = isset($_POST["type"]) ? $_POST["type"] : 0;
 
-$prefectures = get_prefectures();
+    //バリデーション
+    $errors = update_validate($name, $prefecture_id, $type);
+    if (empty($errors)) {
+        update_user($id, $name, $prefecture_id, $type);
 
-if (empty($errors)) {
-    $sql = <<<EOM
-        UPDATE
-            users
-        SET
-            name = :name,
-            prefecture_name = :prefecture_name,
-            type = :type
-        WHERE
-            id = :id
-        EOM;
-
-    $stmt = $dbh->prepare($sql);
-    $stmt->bindParam('name', $name, PDO::PARAM_STR);
-    $stmt->bindParam('prefecture_name', $prefecture_name, PDO::PARAM_STR);
-    $stmt->bindParam('type', $type, PDO::PARAM_STR);
-    $stmt->bindParam('id', $id, PDO::PARAM_INT);
-    $stmt->execute();
-
-    header('Location: index.php');
-    exit;
+        header('Location: mypage.php');
+        exit;
+    }
 }
-// テーブルに登録されている内容をフォームで入力した値で上書き
-$bt['name'] = $name;
-$bt['prefecture_name'] = $prefecture_name;
-$bt['type'] = $type;
+$prefectures = get_prefectures();
 
 ?>
 
@@ -77,26 +41,35 @@ $bt['type'] = $type;
     <div class="photo-block">
         <a href="photo.php" class="photo-plus-btn">Photo</a>
     </div>
-    <a href="mypage.php" class="update-btn">更新</a>
-    <div class="profile">
-        <ul>
-            <li>ユーザー名</li> <input type="text" name="address" value=" value=" <?= h($bt['name']) ?>>
-            <li>居住地</li>
-            <select name="prefecture_id" value="<?= h($bt['prefecture_name']) ?>">
-                <?php foreach ($prefectures as $prefecture) : ?>
-                    <option value=" <?= $prefecture['id'] ?>"><?= $prefecture['name'] ?></option>
-                <?php endforeach ?>
-            </select>
-            <li>
-                <label for="type">タイプ
-                    <input type="radio" id="human" name="type" value=" <?= h($bt['measurement_date']) ?>>
-                    <label for="human">猫</label>
-                    <input type="radio" id="cat" name="type" value="2">
-                    <label for="cat">里親</label>
-                </label>
-            </li>
-        </ul>
-    </div>
+    <form method="POST" action="edit.php">
+        <input type="submit" class = "update-btn" value="更新">
+        <div class="profile">
+            <?php if ($errors) : ?>
+                <ul class="error-list">
+                    <?php foreach ($errors as $error) : ?>
+                        <li><?= h($error) ?></li>
+                    <?php endforeach; ?>
+                </ul>
+            <?php endif; ?>
+            <ul>
+                <li>ユーザー名</li> <input type="text" name="name" value="<?= h($user['name']) ?>">
+                <li>居住地</li>
+                <select name="prefecture_id">
+                    <?php foreach ($prefectures as $prefecture) : ?>
+                        <option value="<?= h($prefecture['id']) ?>" <?php if (h($user['prefecture_id']) == h($prefecture['id'])) echo 'selected' ?>><?= h($prefecture['name']) ?></option>
+                    <?php endforeach ?>
+                </select>
+                <li>
+                    <label for="type">タイプ
+                        <input type="radio" id="human" name="type" value="1" <?php if (h($user['type']) == 1) echo 'checked' ?>>
+                        <label for="human">里親</label>
+                        <input type="radio" id="cat" name="type" value="2" <?php if (h($user['type']) == 2) echo 'checked' ?>>
+                        <label for="cat">猫</label>
+                    </label>
+                </li>
+            </ul>
+        </div>
+    </form>
 </body>
 
 </html>

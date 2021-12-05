@@ -13,10 +13,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id_img = filter_input(INPUT_POST, 'id_img');
 
     //バリデーション
-    $errors = signupValidate($email, $name, $address, $password, $prefecture_id, $type, $cc_img, $id_img);
+    $errors = signup_validate($email, $name, $address, $password, $prefecture_id, $type, $cc_img, $id_img);
 
     if (empty($errors)) {
-        insertUser($email, $name, $address, $password, $prefecture_id, $type, $cc_img, $id_img);
+        insert_user($email, $name, $address, $password, $prefecture_id, $type, $cc_img, $id_img);
 
         header('Location: login.php');
         exit;
