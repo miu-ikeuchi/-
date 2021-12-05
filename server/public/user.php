@@ -59,8 +59,12 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
     <?php include_once __DIR__ . '/_header.html' ?>
     <div class="photo-block">
         <img class="user-photo" src="images/<?= $user['img'] ?>">
-        <input type="submit" value="好き！" class="userpagelike-btn">
-        <input type="submit" value="かわいい" class="userpagecute-btn">
+        <form action="like.php" method="POST">
+            <input type="submit" value="好き！" class="userpagelike-btn">
+        </form>
+        <form action="cute.php" method="POST">
+            <input type="submit" value="かわいい" class="userpagecute-btn">
+        </form>
     </div>
     <div class="profile">
         <ul>
