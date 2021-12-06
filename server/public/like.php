@@ -13,9 +13,8 @@ $id = $_SESSION['id'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $target_user_id = filter_input(INPUT_POST, 'target_user_id');
-    
+
     insert_likes($id, $target_user_id, REQUEST_LIKE);
-    
 }
 
 ?>
@@ -26,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <body class="like_page">
     好き！を送りました
-    <!-- メインページに戻るボタン -->
+    <a href="index.php">メイン画面に戻る</a>
 </body>
 
 </html>

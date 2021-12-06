@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <body class="like_page">
     かわいいを送りました
-    <!-- メインページに戻るボタン -->
+    <a href="index.php">メイン画面に戻る</a>
 </body>
 
 </html>

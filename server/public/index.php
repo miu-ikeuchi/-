@@ -43,8 +43,6 @@ $stmt->bindParam('id', $id, PDO::PARAM_INT);
 $stmt->execute();
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-
-
 ?>
 
 <!DOCTYPE html>

@@ -232,7 +232,10 @@ input {
 }
 
 /* ユーザー詳細画面 */
-.user-page {
+.user-page,
+.mypage,
+.like_page,
+.cute_page {
     background-image: url(images/bg-paw.png);
     background-size: cover;
     background-position: center;
@@ -276,13 +279,6 @@ input {
 }
 
 /* マイページ */
-.mypage {
-    background-image: url(images/bg-paw.png);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
 .profile {
     width: 35%;
     position: absolute;
