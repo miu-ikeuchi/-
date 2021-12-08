@@ -23,9 +23,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html lang="ja">
 <?php include_once __DIR__ . '/_head.html' ?>
 
-<body class="like_page">
+<body class="emo-page">
     かわいいを送りました
-    <a href="index.php">メイン画面に戻る</a>
+    <a href="index.php" class="return-btn">メイン画面に戻る</a>
 </body>
 
 </html>
