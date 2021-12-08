@@ -10,9 +10,9 @@ if (empty($_SESSION['id'])) {
 
 $id = $_SESSION['id'];
 
-$dbh =  connectDb();
+$dbh = connectDb();
 
-$sql =<<<EOM
+$sql = <<<EOM
 SELECT
     a.*,
     c.img
@@ -41,7 +41,7 @@ EOM;
 $stmt = $dbh->prepare($sql);
 $stmt->bindParam('id', $id, PDO::PARAM_INT);
 $stmt->execute();
-$sub_images = $stmt->fetch(PDO::FETCH_ASSOC);
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
 
 ?>
 
@@ -54,13 +54,15 @@ $sub_images = $stmt->fetch(PDO::FETCH_ASSOC);
     <?php include_once __DIR__ . '/_header.html' ?>
     <a href="user.php">
         <div>
-            <img class="main-photo" src="images/<?= $sub_images['img'] ?>">
+            <img class="main-photo" src="images/<?= $user['img'] ?>">
         </div>
     </a>
     <form action="like.php" method="POST">
+        <input type="hidden" name="target_user_id" value="<?= $user['id'] ?>">
         <input type="submit" value="好き！" class="like-btn">
     </form>
     <form action="cute.php" method="POST">
+        <input type="hidden" name="target_user_id" value="<?= $user['id'] ?>">
         <input type="submit" value="かわいい" class="cute-btn">
     </form>
 </body>

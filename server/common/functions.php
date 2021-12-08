@@ -219,3 +219,23 @@ function find_user_by_id($id)
 
     return $stmt->fetch(PDO::PARAM_STR);
 }
+
+function insert_likes($user_id, $target_user_id, $request)
+{
+    $dbh = connectDb();
+
+    $sql = <<<EOM
+    INSERT INTO
+        likes
+        (user_id, target_user_id, request)
+    VALUES
+        (:user_id, :target_user_id, :request)
+    EOM;
+
+    $stmt = $dbh->prepare($sql);
+    $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+    $stmt->bindParam(':target_user_id', $target_user_id, PDO::PARAM_INT);
+    $stmt->bindParam(':request', $request, PDO::PARAM_INT);
+
+    $stmt->execute();
+}

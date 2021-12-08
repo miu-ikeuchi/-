@@ -231,8 +231,31 @@ input {
     border-radius: 25px;
 }
 
+/* エモ送信完了画面 */
+
+.emo-page {
+    padding-top: 24%;
+    font-size: 35px;
+    text-align: center;
+}
+
+.return-btn {
+    color: white;
+    font-size: 20px;
+    display: block;
+    width: 30%;
+    background: orange;
+    border-radius: 20px;
+    text-align: center;
+    padding: 20px;
+    margin-top: 50px;
+    margin-left: 33%;
+}
+
 /* ユーザー詳細画面 */
-.user-page {
+.user-page,
+.mypage,
+.emo-page {
     background-image: url(images/bg-paw.png);
     background-size: cover;
     background-position: center;
@@ -243,12 +266,12 @@ input {
     width: 50%;
 }
 .user-photo {
-    padding: 0 26%;
-    width: 36%;
-    left: 12%;
-    top: 20%;
-    object-fit:cover;
-	border-radius:20%;
+    position: fixed;
+    width: 32%;
+    left: 13%;
+    top: 13%;
+    object-fit: cover;
+    border-radius: 20%;
 }
 
 .userpagelike-btn {
@@ -276,13 +299,6 @@ input {
 }
 
 /* マイページ */
-.mypage {
-    background-image: url(images/bg-paw.png);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
 .profile {
     width: 35%;
     position: absolute;
